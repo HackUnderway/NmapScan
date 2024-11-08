@@ -31,6 +31,21 @@ Then, add a line like the following to the end of the file (replace username wit
 ```
 username ALL=(ALL) NOPASSWD: /usr/bin/nmap
 ```
+
+# Solutions:
+Run the program as sudo: Since the Flask application is running the Nmap command and it needs root permissions, a straightforward solution is to run Flask with sudo:
+
+## Example:
+```
+sudo python3 app.py
+```
+
+However, this is not the most secure solution, especially in a production environment. If you decide to use this method, make sure it is only enabled in controlled environments.
+
+Assign specific permissions to Nmap using setcap: If you want to avoid running the entire Flask script with sudo, you can grant specific permissions to Nmap to run without needing root permissions for certain scans:
+```
+sudo setcap cap_net_raw,cap_net_admin,cap_net_bind_service+eip $(which nmap)
+```
 # USAGE
 ```
 git clone https://github.com/HackUnderway/NmapScan.git
