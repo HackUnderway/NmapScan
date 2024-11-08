@@ -1,0 +1,138 @@
+/* style.css */
+
+/* Define color variables for dark and light themes */
+:root {
+    --background-color: #2c2f33;
+    --text-color: #ffffff;
+    --form-background-color: #40444b;
+    --button-background-color: #218838;
+    --button-hover-color: #3ca374;
+    --pre-background-color: #40444b;
+    --pre-text-color: #43b581;
+}
+
+/* Light theme variables */
+.light-theme {
+    --background-color: #f0f0f0;
+    --text-color: #333333;
+    --form-background-color: #ffffff;
+    --button-background-color: #007bff;
+    --button-hover-color: #0056b3;
+    --pre-background-color: #e9ecef;
+    --pre-text-color: #333333;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    text-align: center;
+    padding: 20px;
+}
+
+form {
+    display: inline-block;
+    background-color: var(--form-background-color);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+input[type="text"], select {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 16px;
+}
+
+button {
+    background-color: var(--button-background-color);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: var(--button-hover-color);
+}
+
+pre {
+    background-color: var(--pre-background-color);
+    padding: 10px;
+    border-radius: 5px;
+    text-align: left;
+    white-space: pre-wrap;
+    color: var(--pre-text-color);
+    margin-top: 20px;
+    display: inline-block;
+    width: 80%;
+}
+
+/* Theme toggle switch styles */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}

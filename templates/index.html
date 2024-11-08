@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='/img/fav.ico') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nmap Scan</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="theme-toggle">
+        <label class="switch">
+            <input type="checkbox" id="theme-toggle">
+            <span class="slider"></span>
+        </label>
+        <span id="theme-label">Dark Mode</span>
+    </div>
+
+    <h2><img src="/static/img/icon.png" alt="Icono" style="width: 30px; height: 30px; vertical-align: middle; margin-right: 5px;">Nmap Scan</h2>
+    
+    <form action="/" method="POST">
+        <label for="target">💻︎ Dirección IP/Dominio:</label>
+        <input type="text" id="target" name="target" placeholder="example.com" required>
+        
+        <label for="scan_type">>_ Tipo de Escaneo Nmap:</label>
+        <select id="scan_type" name="scan_type">
+            <option>Ping Scan (-sP)</option>
+            <option>TCP Connect Scan (-sT)</option>
+            <option>SYN Scan (-sS)</option>
+            <option>Aggressive Scan (-A)</option>
+            <option>OS Detection Scan (-O)</option>
+            <option>Scan without Ping (-Pn)</option>
+            <option>UDP Scan (-sU)</option>
+            <option>Fragmented Packets Scan (-f)</option>
+            <option>Traceroute (-tr)</option>
+            <option>Firewall Detection (-sA)</option>
+            <option>Version Detection (-sV)</option>
+            <option>Intense Scan (-T4 -A -v)</option>
+            <option>Comprehensive Scan (-p 1-65535 -T4 -A -v)</option>
+        </select>
+
+        <button type="submit">▶ <strong style="font-weight: bold;">Ejecutar Nmap Scan</strong></button>
+    </form>
+
+    {% if command_executed %}
+        <h3>Comando Ejecutado:</h3>
+        <pre>{{ command_executed }}</pre>
+    {% endif %}
+
+    {% if scan_result %}
+        <h3>Resultados del Escaneo:</h3>
+        <pre>{{ scan_result }}</pre>
+    {% endif %}
+
+    <script src="/static/theme-toggle.js"></script>
+</body>
+</html>
