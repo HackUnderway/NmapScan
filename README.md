@@ -37,7 +37,7 @@ Run the program as sudo: Since the Flask application is running the Nmap command
 
 ## Example:
 ```
-sudo python3 app.py
+sudo python3 nmap_scan.py
 ```
 
 However, this is not the most secure solution, especially in a production environment. If you decide to use this method, make sure it is only enabled in controlled environments.
@@ -69,20 +69,31 @@ Questions, bugs or suggestions to : info@hackunderway.com
 
 We need partners and sponsors, if you're interested in support or help contact.
 
-# SECURITY RESEARCHER
+# CYBERSECURITY RESEARCHER
 
-* Victor Bancayan - [@VictorBancayan](https://twitter.com/VictorBancayan) - (**CEO at [Hack Underway](https://www.instagram.com/hackunderway/)**) 
+* [Victor Bancayan](https://www.offsec.com/bug-bounty-program/) - (**CEO at [Hack Underway](https://hackunderway.com/)**) 
 
-## 🔗 LINKS
-[![PATREON](https://img.shields.io/badge/patreon-000000?style=for-the-badge&logo=Patreon&logoColor=white)](https://www.patreon.com/c/HackUnderway)
-```
-Fanpage: https://www.facebook.com/HackUnderway
-X: https://twitter.com/JeyZetaOficial
-Web site: https://hackunderway.com
-Youtube: https://www.youtube.com/@JeyZetaOficial
-```
-[![Kali Linux Badge](https://img.shields.io/badge/Kali%20Linux-1793D1?logo=kalilinux&logoColor=fff&style=plastic)](https://www.facebook.com/HackUnderway/)
+## 🔗 ENLACES
+[![Patreon](https://img.shields.io/badge/patreon-000000?style=for-the-badge&logo=Patreon&logoColor=white)](https://www.patreon.com/c/HackUnderway)
+[![Web site](https://img.shields.io/badge/Website-FF7139?style=for-the-badge&logo=firefox&logoColor=white)](https://hackunderway.com)
+[![Facebook](https://img.shields.io/badge/Facebook-1877F2?style=for-the-badge&logo=facebook&logoColor=white)](https://www.facebook.com/HackUnderway)
+[![YouTube](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/@JeyZetaOficial)
+[![Twitter/X](https://img.shields.io/badge/Twitter/X-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/JeyZetaOficial)
+[![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/hackunderway)
+[![TryHackMe](https://img.shields.io/badge/TryHackMe-212C42?style=for-the-badge&logo=tryhackme&logoColor=white)](https://tryhackme.com/p/JeyZeta)
 
-from <img src="https://i.imgur.com/ngJCbSI.png" title="Perú"> made in <img src="https://i.imgur.com/NNfy2o6.png" title="Python"> with <img src="http://cdn0.bodas.com.mx/img/smileys/smiley_heart.png" title="Love"> by: <font color="red">Victor Bancayan</font>, if you want Donate <a href="https://www.buymeacoffee.com/HackUnderway"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=HackUnderway&button_colour=40DCA5&font_colour=ffffff&font_family=Comic&outline_colour=000000&coffee_colour=FFDD00" /></a>
+## ☕️ Apoya el proyecto
 
-© 2024
+Si te gusta esta herramienta, considera invitarme un café:
+
+[![Buy Me a Coffee](https://img.shields.io/badge/-Buy%20me%20a%20coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/hackunderway)
+
+## 🌞 Suscripciones
+
+###### Suscríbete a: [Jey Zeta](https://www.facebook.com/JeyZetaOficial/subscribe/)
+
+[![Kali Linux](https://img.shields.io/badge/Kali_Linux-557C94?style=for-the-badge&logo=kalilinux&logoColor=white)](https://www.kali.org/)
+
+from <img src="https://i.imgur.com/ngJCbSI.png" title="Perú"> made in <img src="https://i.imgur.com/NNfy2o6.png" title="Python"> with <img src="https://i.imgur.com/S86RzPA.png" title="Love"> by: <font color="red">Victor Bancayan</font>
+
+© 2025
