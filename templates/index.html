@@ -2,11 +2,121 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='/img/fav.ico') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nmap Scan</title>
     <link rel="stylesheet" href="/static/style.css">
+    <style>
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.75);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        #popup {
+            background: var(--form-background-color);
+            color: var(--text-color);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            min-width: 320px;
+            max-width: 90%;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            border: 1px solid #555;
+        }
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid #3a3f47;
+            border-top: 4px solid #4CAF50;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        #status-text {
+            margin: 10px 0;
+            color: #ccc;
+            font-size: 14px;
+        }
+        #result-container {
+            margin-top: 20px;
+            text-align: left;
+            display: none;
+            max-height: 500px;  /* aumentado para más contenido */
+            overflow-y: auto;
+        }
+        #result-container pre {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 14px;       /* un poco más grande */
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            max-height: 450px;     /* altura suficiente */
+            overflow-y: auto;
+            min-height: 180px;     /* altura mínima */
+        }
+        .btn-download {
+            background: #2196F3;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+        .btn-download:hover {
+            background: #1976D2;
+        }
+        .btn-close {
+            background: #f44336;
+            color: white;
+            border: none;
+            padding: 10px 20px;    /* padding equilibrado */
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+            white-space: nowrap;
+            display: inline-block;
+            flex: none;            /* evita que se estire */
+        }
+        .btn-close:hover {
+            background: #c62828;
+        }
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        .light-theme #popup {
+            border: 1px solid #ddd;
+        }
+        .light-theme #popup pre {
+            background: #f4f4f4;
+            color: #333;
+        }
+        .light-theme .spinner {
+            border-color: #ccc;
+            border-top-color: #007bff;
+        }
+    </style>
 </head>
 <body>
     <div class="theme-toggle">
@@ -21,38 +131,116 @@
     
     <form action="/" method="POST">
         <label for="target">💻︎ Dirección IP/Dominio:</label>
-        <input type="text" id="target" name="target" placeholder="example.com" required>
+        <input type="text" id="target" name="target" placeholder="example.com" required value="{{ target if target else '' }}">
         
         <label for="scan_type">>_ Tipo de Escaneo Nmap:</label>
         <select id="scan_type" name="scan_type">
-            <option>Ping Scan (-sP)</option>
-            <option>TCP Connect Scan (-sT)</option>
-            <option>SYN Scan (-sS)</option>
-            <option>Aggressive Scan (-A)</option>
-            <option>OS Detection Scan (-O)</option>
-            <option>Scan without Ping (-Pn)</option>
-            <option>UDP Scan (-sU)</option>
-            <option>Fragmented Packets Scan (-f)</option>
-            <option>Traceroute (-tr)</option>
-            <option>Firewall Detection (-sA)</option>
-            <option>Version Detection (-sV)</option>
-            <option>Intense Scan (-T4 -A -v)</option>
-            <option>Comprehensive Scan (-p 1-65535 -T4 -A -v)</option>
+            <option {% if scan_type == 'Ping Scan (-sP)' %}selected{% endif %}>Ping Scan (-sP)</option>
+            <option {% if scan_type == 'TCP Connect Scan (-sT)' %}selected{% endif %}>TCP Connect Scan (-sT)</option>
+            <option {% if scan_type == 'SYN Scan (-sS)' %}selected{% endif %}>SYN Scan (-sS)</option>
+            <option {% if scan_type == 'Aggressive Scan (-A)' %}selected{% endif %}>Aggressive Scan (-A)</option>
+            <option {% if scan_type == 'OS Detection Scan (-O)' %}selected{% endif %}>OS Detection Scan (-O)</option>
+            <option {% if scan_type == 'Scan without Ping (-Pn)' %}selected{% endif %}>Scan without Ping (-Pn)</option>
+            <option {% if scan_type == 'UDP Scan (-sU)' %}selected{% endif %}>UDP Scan (-sU)</option>
+            <option {% if scan_type == 'Fragmented Packets Scan (-f)' %}selected{% endif %}>Fragmented Packets Scan (-f)</option>
+            <option {% if scan_type == 'Traceroute (-tr)' %}selected{% endif %}>Traceroute (-tr)</option>
+            <option {% if scan_type == 'Firewall Detection (-sA)' %}selected{% endif %}>Firewall Detection (-sA)</option>
+            <option {% if scan_type == 'Version Detection (-sV)' %}selected{% endif %}>Version Detection (-sV)</option>
+            <option {% if scan_type == 'Intense Scan (-T4 -A -v)' %}selected{% endif %}>Intense Scan (-T4 -A -v)</option>
+            <option {% if scan_type == 'Comprehensive Scan (-p 1-65535 -T4 -A -v)' %}selected{% endif %}>Comprehensive Scan (-p 1-65535 -T4 -A -v)</option>
         </select>
 
         <button type="submit">▶ <strong style="font-weight: bold;">Ejecutar Nmap Scan</strong></button>
     </form>
 
-    {% if command_executed %}
-        <h3>Comando Ejecutado:</h3>
-        <pre>{{ command_executed }}</pre>
-    {% endif %}
-
-    {% if scan_result %}
-        <h3>Resultados del Escaneo:</h3>
-        <pre>{{ scan_result }}</pre>
-    {% endif %}
+    <!-- Overlay con spinner -->
+    <div id="overlay">
+        <div id="popup">
+            <h3>🔍 Escaneando...</h3>
+            <div class="spinner"></div>
+            <p id="status-text">Iniciando escaneo...</p>
+            <div id="result-container">
+                <h4>Resultados del escaneo:</h4>
+                <pre id="result-content"></pre>
+                <div class="btn-group">
+                    <form id="pdf-form" method="POST" action="/download_pdf" style="display:inline;">
+                        <input type="hidden" name="scan_result" id="pdf-result" value="">
+                        <input type="hidden" name="target" value="{{ session.get('target', '') }}">
+                        <input type="hidden" name="scan_type" value="{{ session.get('scan_type', '') }}">
+                        <button type="submit" class="btn-download">📄 Descargar PDF</button>
+                    </form>
+                    <button class="btn-close" onclick="closeProgress()">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="/static/theme-toggle.js"></script>
+    <script>
+        let progressInterval = null;
+        const taskId = "{{ task_id if scan_running else '' }}";
+
+        function startProgressPolling() {
+            if (!taskId) return;
+            
+            const overlay = document.getElementById('overlay');
+            overlay.style.display = 'flex';
+            document.getElementById('result-container').style.display = 'none';
+            document.querySelector('.spinner').style.display = 'block';
+            document.getElementById('status-text').textContent = '⏳ Escaneando...';
+            
+            progressInterval = setInterval(function() {
+                fetch('/progress/' + taskId)
+                    .then(response => response.json())
+                    .then(data => {
+                        const statusText = document.getElementById('status-text');
+                        
+                        if (data.status === 'running' || data.status === 'starting') {
+                            document.querySelector('.spinner').style.display = 'block';
+                            statusText.textContent = '⏳ Escaneando... por favor espera';
+                        } else if (data.status === 'complete') {
+                            document.querySelector('.spinner').style.display = 'none';
+                            statusText.textContent = '✅ ¡Escaneo completado!';
+                            clearInterval(progressInterval);
+                            progressInterval = null;
+                            showResult(data.result);
+                        } else if (data.status === 'error') {
+                            document.querySelector('.spinner').style.display = 'none';
+                            statusText.textContent = '❌ Error en el escaneo';
+                            clearInterval(progressInterval);
+                            progressInterval = null;
+                            showResult(data.result);
+                        } else if (data.status === 'not_found') {
+                            statusText.textContent = '⏳ Esperando tarea...';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error en polling:', error);
+                    });
+            }, 600);
+        }
+
+        function showResult(result) {
+            document.getElementById('result-content').textContent = result;
+            document.getElementById('result-container').style.display = 'block';
+            document.getElementById('pdf-result').value = result;
+        }
+
+        function closeProgress() {
+            document.getElementById('overlay').style.display = 'none';
+            if (progressInterval) {
+                clearInterval(progressInterval);
+                progressInterval = null;
+            }
+            // Recargar la página para limpiar estado
+            window.location.href = '/';
+        }
+
+        if (taskId) {
+            window.addEventListener('load', function() {
+                startProgressPolling();
+            });
+        }
+    </script>
 </body>
 </html>

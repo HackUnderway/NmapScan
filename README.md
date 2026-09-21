@@ -1,23 +1,29 @@
 # NmapScan
 Tool to use Nmap, in Flask with different types of scans. 👁
 
-[![Join our Fanpage](https://img.shields.io/badge/Join%20Our%20Fanpage-Hack%20Underway-1.svg)](https://www.facebook.com/HackUnderway/)
+<p align="center">
+<img src="assets/Demo_04.png" title="NmapScan" alt="NmapScan" width="600"/>
+</p>
 
-![NmapScan](https://github.com/HackUnderway/NmapScan/blob/main/Nmap_Scan.png)
-![NmapScan](https://github.com/HackUnderway/NmapScan/blob/main/Dark.png)
-![NmapScan](https://github.com/HackUnderway/NmapScan/blob/main/Light.png)
-![NmapScan](https://github.com/HackUnderway/NmapScan/blob/main/Options_Nmap.png)
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.8+-3776AB?logo=python&logoColor=white" alt="Python version">
+  <img src="https://img.shields.io/badge/NMAP-SCANNER-red?logo=nmap&logoColor=white">
+  <img src="https://img.shields.io/badge/PYTHON-FLASK-blue?logo=python&logoColor=white">
+  <img src="https://img.shields.io/badge/PENTESTING-AUTOMATION-red?logo=kali-linux&logoColor=white">
+  <img src="https://img.shields.io/badge/ACTIVE-RECON-orange?logo=security&logoColor=white">
+  <img src="https://img.shields.io/badge/License-MIT-green?logo=open-source-initiative&logoColor=white" alt="License">
+</p>
 
 > **The project is open to partners.**
 
 # SUPPORTED DISTRIBUTIONS
-|Distribution | Version Check | supported | status |
-----------|-------|------|-------|
-|Kali Linux| 2024.3| yes| working   |
-|Parrot Security OS| 6.0| yes | working   |
-|Windows| 11 | yes | working   |
-|BackBox| 8.1 | yes | working   |
-|Arch Linux| 2024.06.01 | yes | working   |
+|Distribution | Verified version | 	Supported | 	Status |
+|--------------|--------------------|------|-------|
+|Kali Linux| 2026.2| ✅| Working   |
+|Parrot Security OS| 6.3| ✅ | Working   |
+|Windows| 11 | ✅ | Working   |
+|BackBox| 9 | ✅ | Working   |
+|Arch Linux| 2024.12.01 | ✅ | Working   |
 
 # Root privileges:
 To run some types of advanced scans with Nmap (such as -sS, -O, -A), sudo is required. Make sure that the user running the application has the necessary permissions or configure sudo to not prompt for a password when running Nmap (this should be done with caution).
@@ -60,6 +66,15 @@ python3 nmap_scan.py
 ```
 pip install -r requirements.txt
 ```
+
+<p align="center">
+<img src="assets/Demo_01.png" title="NmapScan" alt="NmapScan" width="600"/>
+<img src="assets/Demo_02.png" title="NmapScan" alt="NmapScan" width="600"/>
+<img src="assets/Demo_03.png" title="NmapScan" alt="NmapScan" width="600"/>
+<img src="assets/Demo_04.png" title="NmapScan" alt="NmapScan" width="600"/>
+<img src="assets/Report_PDF.png" title="NmapScan" alt="NmapScan" width="600"/>
+</p>
+
 # SUPPORT
 Questions, bugs or suggestions to : info@hackunderway.com
 
@@ -69,11 +84,25 @@ Questions, bugs or suggestions to : info@hackunderway.com
 
 We need partners and sponsors, if you're interested in support or help contact.
 
-# CYBERSECURITY RESEARCHER
+# 👨‍💻 Author
 
 * [Victor Bancayan](https://www.offsec.com/bug-bounty-program/) - (**CEO at [Hack Underway](https://hackunderway.com/)**) 
 
-## 🔗 ENLACES
+---
+
+<h2 align="center">🕵️‍♂️ OSINT Platform</h2>
+<p align="center">
+  <a href="https://hackunderway.io/" target="_blank">
+    <img src="https://img.shields.io/badge/Try%20Enterprise%20Mode-hackunderway.io-0088CC?style=for-the-badge&logo=internet&logoColor=white" alt="OSINT Platform">
+  </a>
+</p>
+<p align="center">
+  <b>Automate OSINT processes</b><br>
+  New <b>Enterprise Mode</b> – Maltego-inspired interface with visual graphs and professional workflows.<br>
+  <a href="https://hackunderway.io/new-update-to-our-osint-platform-hack-underway/" target="_blank">📢 See what's new</a>
+</p>
+
+## 🔗 Links
 [![Patreon](https://img.shields.io/badge/patreon-000000?style=for-the-badge&logo=Patreon&logoColor=white)](https://www.patreon.com/c/HackUnderway)
 [![Web site](https://img.shields.io/badge/Website-FF7139?style=for-the-badge&logo=firefox&logoColor=white)](https://hackunderway.com)
 [![Facebook](https://img.shields.io/badge/Facebook-1877F2?style=for-the-badge&logo=facebook&logoColor=white)](https://www.facebook.com/HackUnderway)
@@ -82,18 +111,18 @@ We need partners and sponsors, if you're interested in support or help contact.
 [![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/hackunderway)
 [![TryHackMe](https://img.shields.io/badge/TryHackMe-212C42?style=for-the-badge&logo=tryhackme&logoColor=white)](https://tryhackme.com/p/JeyZeta)
 
-## ☕️ Apoya el proyecto
+## ☕️ Support the project
 
-Si te gusta esta herramienta, considera invitarme un café:
+If you like this tool, consider buying me a coffee:
 
 [![Buy Me a Coffee](https://img.shields.io/badge/-Buy%20me%20a%20coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://www.buymeacoffee.com/hackunderway)
 
-## 🌞 Suscripciones
+## 🌞 Subscriptions
 
-###### Suscríbete a: [Jey Zeta](https://www.facebook.com/JeyZetaOficial/subscribe/)
+###### Subscribe to: [Jey Zeta](https://www.facebook.com/JeyZetaOficial/subscribe/)
 
 [![Kali Linux](https://img.shields.io/badge/Kali_Linux-557C94?style=for-the-badge&logo=kalilinux&logoColor=white)](https://www.kali.org/)
 
-from <img src="https://i.imgur.com/ngJCbSI.png" title="Perú"> made in <img src="https://i.imgur.com/NNfy2o6.png" title="Python"> with <img src="https://i.imgur.com/S86RzPA.png" title="Love"> by: <font color="red">Victor Bancayan</font>
+from <img src="https://i.imgur.com/ngJCbSI.png" title="Perú"> made in <img src="https://i.imgur.com/NNfy2o6.png" title="Python"> + <img src="https://img.shields.io/badge/Flask-000000?style=flat&logo=flask&logoColor=white" height="13"> with <img src="https://i.imgur.com/S86RzPA.png" title="Love"> by: <font color="red">Victor Bancayan</font>
 
-© 2025
+© 2026

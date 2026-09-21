@@ -1,0 +1,15 @@
+# Obsidian (Notas del proyecto)
+.obsidian/
+
+# Python / Flask
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+.env
+instance/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db

@@ -28,6 +28,8 @@ body {
     color: var(--text-color);
     text-align: center;
     padding: 20px;
+    margin: 0;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 form {
@@ -37,6 +39,9 @@ form {
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     margin-top: 20px;
+    width: 90%;
+    max-width: 500px;
+    transition: background-color 0.3s;
 }
 
 label {
@@ -53,6 +58,9 @@ input[type="text"], select {
     border: 1px solid #ccc;
     border-radius: 3px;
     font-size: 16px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
 }
 
 button {
@@ -80,6 +88,9 @@ pre {
     margin-top: 20px;
     display: inline-block;
     width: 80%;
+    max-width: 800px;
+    overflow-x: auto;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 /* Theme toggle switch styles */
@@ -89,6 +100,7 @@ pre {
     right: 20px;
     display: flex;
     align-items: center;
+    z-index: 1001; /* Asegura que esté por encima del overlay */
 }
 
 .switch {
@@ -135,4 +147,16 @@ input:checked + .slider {
 
 input:checked + .slider:before {
     transform: translateX(26px);
+}
+
+/* Ajustes para el overlay en modo claro */
+.light-theme #popup {
+    border: 1px solid #ddd;
+}
+.light-theme #popup pre {
+    background: #f4f4f4;
+    color: #333;
+}
+.light-theme .progress {
+    background-color: #e0e0e0;
 }
